@@ -7,7 +7,7 @@ public class Application {
 	    Scanner scanner = new Scanner(System.in);
 	    
 	    while (true) {
-	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
+	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial, permutation) or 'exit' to quit:");
 	        String operation = scanner.next();
 	        
 	        if (operation.equalsIgnoreCase("exit")) {
@@ -16,7 +16,8 @@ public class Application {
 	        }
 
 	        // For operations requiring two inputs
-	        if (!operation.equalsIgnoreCase("sqrt") && !operation.equalsIgnoreCase("log") && !operation.equalsIgnoreCase("log10") && !operation.equalsIgnoreCase("sin") && !operation.equalsIgnoreCase("cos") && !operation.equalsIgnoreCase("tan") && !operation.equalsIgnoreCase("factorial")) {
+	        if (!operation.equalsIgnoreCase("sqrt") && !operation.equalsIgnoreCase("log") && !operation.equalsIgnoreCase("log10") && !operation.equalsIgnoreCase("sin") 
+	        		&& !operation.equalsIgnoreCase("cos") && !operation.equalsIgnoreCase("tan") && !operation.equalsIgnoreCase("factorial")) {
 	            System.out.print("Enter first number: ");
 	            double num1 = scanner.nextDouble();
 	            System.out.print("Enter second number: ");
@@ -37,6 +38,9 @@ public class Application {
 	                    break;
 	                case "pow":
 	                    System.out.println("Result: " + power(num1, num2));
+	                    break;
+	                case "permutation":
+	                    System.out.println("Result: " + perms(num1, num2));
 	                    break;
 	                default:
 	                    System.out.println("Invalid operation.");
@@ -137,6 +141,29 @@ public class Application {
     
     public static double tan(double angleRadians) {
         return Math.tan(angleRadians);
+    }
+    
+    public static double perms(double a, double b) {
+        
+    	// Error checking, and returning NaN ("Not a number") if user inputs something not allowed
+    	if (a < 0 || b < 0) {
+    		System.out.println("Please enter postitive numbers");
+    		return Double.NaN;
+    	} else if (a > 100) {
+    		System.out.println("Number too large, please try something lower than 100");
+    		return Double.NaN;
+    	} else if (b > a) {
+    		System.out.println("Please enter the larger number first");
+    		return Double.NaN;
+    	} 
+    	
+    	// Recursively multiply to find out the number of permutations
+    	if (a <= b) {
+            return 1;
+        } else {
+            return a * perms(a - 1, b);
+        }
+    	
     }
     
 }
