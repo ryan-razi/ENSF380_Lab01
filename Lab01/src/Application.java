@@ -132,15 +132,15 @@ public class Application {
     }
     
     public static double sin(double angleRadians) {
-        return Math.sin(angleRadians);
+        return Math.sin(Math.toRadians(angleRadians));
     }
     
     public static double cos(double angleRadians) {
-        return Math.cos(angleRadians);
+        return Math.cos(Math.toRadians(angleRadians));
     }
     
     public static double tan(double angleRadians) {
-        return Math.tan(angleRadians);
+        return Math.tan(Math.toRadians(angleRadians));
     }
     
     public static double perms(double a, double b) {
